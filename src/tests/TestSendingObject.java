@@ -1,3 +1,4 @@
+package tests;
 import java.net.InetSocketAddress;
 
 import ch.judos.generic.network.udp.UdpLib;

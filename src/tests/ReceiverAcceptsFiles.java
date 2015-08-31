@@ -1,3 +1,4 @@
+package tests;
 import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
