@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 
 import ch.judos.generic.data.format.ByteData;
 import ch.judos.generic.files.FileUtils;
+import ch.judos.generic.math.MathJS;
 import ch.judos.generic.network.udp.UdpLib;
 import ch.judos.generic.network.udp.interfaces.Udp4I;
 import ch.judos.generic.network.udp.interfaces.UdpFileTransferListener;
@@ -59,9 +60,9 @@ public class TestSendingFiles implements UdpFileTransferListener {
 	@Override
 	public void transmissionProgress(float percentage, float avgSpeed, long transmitted,
 		long total) {
-		System.out.println(percentage + "% avgSpeed: " + ByteData.autoFormat(avgSpeed)
-			+ "/s  progress: " + ByteData.autoFormat(transmitted) + "/"
-			+ ByteData.autoFormat(total));
+		System.out.println(MathJS.round(percentage, 1) + "% avgSpeed: "
+			+ ByteData.autoFormat(avgSpeed) + "/s  progress: "
+			+ ByteData.autoFormat(transmitted) + "/" + ByteData.autoFormat(total));
 	}
 
 }

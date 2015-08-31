@@ -5,6 +5,8 @@ import java.net.SocketException;
 
 import ch.judos.generic.data.format.ByteData;
 import ch.judos.generic.files.FileUtils;
+import ch.judos.generic.math.MathJS;
+import ch.judos.generic.network.udp.UdpConfig;
 import ch.judos.generic.network.udp.UdpLib;
 import ch.judos.generic.network.udp.interfaces.FileTransmissionHandler;
 import ch.judos.generic.network.udp.interfaces.Udp4I;
@@ -24,9 +26,9 @@ public class ReceiverAcceptsFiles implements FileTransmissionHandler, UdpFileTra
 	public static void main(String[] args) throws SocketException {
 		new ReceiverAcceptsFiles();
 	}
-
+	private Udp4I udpLib;
 	public ReceiverAcceptsFiles() throws SocketException {
-		Udp4I udpLib = UdpLib.createOnPort(targetPort);
+		this.udpLib = UdpLib.createOnPort(targetPort);
 
 		udpLib.setFileHandler(this);
 
@@ -35,10 +37,12 @@ public class ReceiverAcceptsFiles implements FileTransmissionHandler, UdpFileTra
 
 	@Override
 	public File requestFileTransmission(FileDescription fd) {
-		System.out.println(fd.getDescription());
-		System.out.println(fd.getPath());
-		System.out.println("Length: " + fd.getLength());
-		System.out.println("Parts: " + fd.getParts());
+		System.out.println("Incoming request for file transmission:");
+		System.out.println("Description: " + fd.getDescription());
+		System.out.println("File path of sender: " + fd.getPath());
+		System.out.println("Total size: " + ByteData.autoFormat(fd.getLength()));
+		System.out.println("Parts à " + ByteData.autoFormat(UdpConfig.PACKET_SIZE_BYTES)
+			+ ": " + fd.getParts());
 		String extension = FileUtils.getExtension(new File(fd.getPath()));
 		return new File("temp." + extension);
 	}
@@ -70,9 +74,9 @@ public class ReceiverAcceptsFiles implements FileTransmissionHandler, UdpFileTra
 	@Override
 	public void transmissionProgress(float percentage, float avgSpeed, long transmitted,
 		long total) {
-		System.out.println(percentage + "% avgSpeed: " + ByteData.autoFormat(avgSpeed)
-			+ "/s  progress: " + ByteData.autoFormat(transmitted) + "/"
-			+ ByteData.autoFormat(total));
+		System.out.println(MathJS.round(percentage, 1) + "% avgSpeed: "
+			+ ByteData.autoFormat(avgSpeed) + "/s  progress: "
+			+ ByteData.autoFormat(transmitted) + "/" + ByteData.autoFormat(total));
 	}
 
 	@Override

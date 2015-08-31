@@ -14,6 +14,22 @@ public class TestGenericUpnpForwarding {
 
 	public TestGenericUpnpForwarding() throws Exception {
 		Udp4Forwarded lib = UdpLib.createForwarded();
+		System.out.println("Created udp socket on port: " + lib.getLocalPort());
+		System.out.println("Mapped with portforwarding to external port: "
+			+ lib.getExternalPort());
+
+		synchronized (this) {
+			this.wait(1000);
+		}
+		lib.dispose();
+
+		System.out.println();
+		System.out.println("Trying to forward specific port:");
+
+		lib = UdpLib.createForwarded(50001);
+		System.out.println("Created udp socket on port: " + lib.getLocalPort());
+		System.out.println("Mapped with portforwarding to external port: "
+			+ lib.getExternalPort());
 
 		synchronized (this) {
 			this.wait(1000);
