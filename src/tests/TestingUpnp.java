@@ -25,12 +25,16 @@
 /*
  * refer to miniupnpc-1.0-RC8
  */
-package org.bitlet.weupnp;
+package tests;
 
 import java.net.InetAddress;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Map;
+
+import org.bitlet.weupnp.GatewayDevice;
+import org.bitlet.weupnp.GatewayDiscover;
+import org.bitlet.weupnp.PortMappingEntry;
 
 /**
  * This class contains a trivial main method that can be used to test whether
@@ -39,7 +43,7 @@ import java.util.Map;
  *
  * @author Alessandro Bahgat Shehata
  */
-public class Main {
+public class TestingUpnp {
 
 	private static int SAMPLE_PORT = 6991;
 	private static short WAIT_TIME = 10;
