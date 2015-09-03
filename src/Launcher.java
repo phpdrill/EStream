@@ -11,6 +11,7 @@ import ch.judos.generic.network.udp.UdpLib;
 import ch.judos.generic.network.udp.interfaces.Udp4I;
 import ch.judos.generic.network.udp.interfaces.UdpFileTransferListener;
 import ch.judos.generic.network.udp.interfaces.UdpListener;
+import controller.MainController;
 
 public class Launcher implements UdpFileTransferListener, ConnectionIssueListener, UdpListener {
 	public static void main(String[] args) throws SerializerException, IOException {
