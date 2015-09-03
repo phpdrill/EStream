@@ -6,6 +6,7 @@ import java.net.SocketException;
 import ch.judos.generic.data.format.ByteData;
 import ch.judos.generic.files.FileUtils;
 import ch.judos.generic.math.MathJS;
+import ch.judos.generic.network.udp.Udp4Forwarded;
 import ch.judos.generic.network.udp.UdpConfig;
 import ch.judos.generic.network.udp.UdpLib;
 import ch.judos.generic.network.udp.interfaces.FileTransmissionHandler;
@@ -26,14 +27,20 @@ public class ReceiverAcceptsFiles implements FileTransmissionHandler, UdpFileTra
 	public static void main(String[] args) throws SocketException {
 		new ReceiverAcceptsFiles();
 	}
-	private Udp4I udpLib;
+	private Udp4Forwarded udpLib;
 	public ReceiverAcceptsFiles() throws SocketException {
-		this.udpLib = UdpLib.createOnPort(targetPort);
+		
+		while(this.udpLib == null){
+			this.udpLib = UdpLib.createForwarded();
+		}
+		
+		System.out.println("Port mapping created on port " + udpLib.getExternalPort());
 
 		udpLib.setFileHandler(this);
 
 		udpLib.addObjectListener(this);
 	}
+
 
 	@Override
 	public File requestFileTransmission(FileDescription fd) {

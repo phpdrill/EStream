@@ -18,7 +18,7 @@ public class TestSendingFiles implements UdpFileTransferListener {
 	private Udp4I udpLib;
 	public static boolean usePublic = true;
 	public static String targetPublicIP = "5.149.32.249";
-	public static String targetIp = "192.168.1.222";
+	public static String targetIp = "localhost";
 	public static int targetPort = 50001;
 
 	public static void main(String[] args) throws Exception {
