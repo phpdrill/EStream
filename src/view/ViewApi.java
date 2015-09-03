@@ -27,6 +27,11 @@ public class ViewApi {
 	public void setListOfHosts(List<Host> hosts) {
 		this.frame.userList.setListData(hosts.toArray(new Host[]{}));
 	}
+
+	public void setSelectionListener(SelectionListener<Host> selectionListener) {
+		this.frame.setSelectionListener(selectionListener);
+	}
+
 	/**
 	 * the passed Runnable object gets executed when the window is closed
 	 * 

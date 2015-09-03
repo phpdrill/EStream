@@ -44,4 +44,8 @@ public class EStreamFrame extends JFrame {
 		this.userList.setPreferredSize(new Dimension(250, 500));
 		this.add(this.userList);
 	}
+
+	public void setSelectionListener(SelectionListener<Host> selectionListener) {
+		// for(this.userList.getListSelectionListeners();
+	}
 }
