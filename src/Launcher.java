@@ -21,8 +21,7 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 				new Contact (user, "85.2.139.222" , "50200") :
 				new Contact (user, "5.149.32.249" , "50200") ;*/
 		
-
-
+		MainController controller = new MainController();
 		
 	}
 
