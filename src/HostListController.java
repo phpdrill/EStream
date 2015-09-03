@@ -23,7 +23,7 @@ public class HostListController {
 	private void get(){
 		try{
 			InputStream content = URLConnector.getContent("http://www.however.ch/estream/getHostList.php");
-			HostList list = HostList.getFromString(content);
+			hostList = HostList.getFromString(content);
 		}catch(ParserConfigurationException exception){
 			exception.printStackTrace();
 		}catch(SAXException exception){

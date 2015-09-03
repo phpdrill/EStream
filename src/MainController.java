@@ -20,8 +20,8 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
-		/*HostListController hostListC = new HostListController();
-		hostListC.show();*/
+		HostListController hostListC = new HostListController();
+		hostListC.show();
 		
 		
 	}
