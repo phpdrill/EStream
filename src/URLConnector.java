@@ -17,11 +17,13 @@ public class URLConnector {
 		    connection.connect();
 		    return connection;
 
-		}catch (MalformedURLException e) { 
+		}catch (MalformedURLException e) {
+			e.printStackTrace();
 		    // new URL() failed
 		    // ...
 		} 
-		catch (IOException e) {   
+		catch (IOException e) { 
+			e.printStackTrace();
 		    // openConnection() failed
 		    // ...
 		}
@@ -32,18 +34,17 @@ public class URLConnector {
 		
 		try {
 			
-		    //URL myURL = new URL(url);
-		    URLConnection connection = call(url);//myURL.openConnection();
-		    //connection.connect();
-			
+		    URLConnection connection = call(url);
 			return connection.getInputStream();
 
 		} 
-		catch (MalformedURLException e) { 
+		catch (MalformedURLException e) {
+			e.printStackTrace();
 		    // new URL() failed
 		    // ...
 		} 
-		catch (IOException e) {   
+		catch (IOException e) { 
+			e.printStackTrace();
 		    // openConnection() failed
 		    // ...
 		}
