@@ -29,23 +29,14 @@ public class MainController {
 	private void registerHost() throws IOException {
 		
 		String name = System.getProperty("user.name");
-		String ip = null;
-		String port = null;
+		String ip = "blabli";
+		String port = "blabla";
 		
 		InputStream inputStream = 
 				URLConnector.getContent("http://www.however.ch/estream/registerHost.php?"
 				+ "name=" + name
 				+ "&ip=" + ip
 				+ "&port=" + port);
-		
-		StringBuilder inputStringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-        String line = bufferedReader.readLine();
-        while(line != null){
-            inputStringBuilder.append(line);inputStringBuilder.append('\n');
-            line = bufferedReader.readLine();
-        }
-        System.out.println("Content: "+ inputStringBuilder.toString());
 
 		
 	}
