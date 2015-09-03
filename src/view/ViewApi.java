@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import model.Document;
 import model.Host;
 import ch.judos.generic.data.DynamicList;
 
@@ -30,6 +31,10 @@ public class ViewApi {
 
 	public void setSelectionListener(SelectionListener<Host> selectionListener) {
 		this.frame.setSelectionListener(selectionListener);
+	}
+
+	public void setDocumentListForHost(Host host, List<Document> files) {
+		// to be implemented
 	}
 
 	/**
