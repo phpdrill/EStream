@@ -57,6 +57,8 @@ public class HostListController implements SelectionListener<Host> {
 		// *** PFAD ALESSIO ***//
 		String path = host.getName().equals("Alessio") ? "D:\\Musik\\25.08.2015" : "";
 		// *** PFAD JULIAN ***//
+		if (host.getName().equals("Julian"))
+			path = "D:\\Musik\\gut";
 
 		FileListController fileListC = new FileListController();
 		fileListC.show(path, host, api);
