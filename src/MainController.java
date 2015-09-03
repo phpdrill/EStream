@@ -9,9 +9,20 @@ import java.net.URLConnection;
 public class MainController {
 	public MainController(){
 		
+		registerHost();
+		
 		HostListController hostListC = new HostListController();
 		hostListC.show();
 		
+		
+	}
+
+	private void registerHost() {
+		
+		String name = System.getProperty("user.name");
+		
+		URLConnector.call("http://www.however.ch/estream/registerHost.php?"
+				+ "name=" + name + "");
 		
 	}
 

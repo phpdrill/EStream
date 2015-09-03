@@ -5,6 +5,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import model.HostList;
+
 public class HostListController {
 	
 	public void show(){

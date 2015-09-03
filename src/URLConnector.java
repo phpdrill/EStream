@@ -8,22 +8,33 @@ import java.net.URLConnection;
 
 public class URLConnector {
 	
-	public static InputStream getContent(String url) {
+	public static URLConnection call(String url){
 		
 		try {
+			
 		    URL myURL = new URL(url);
 		    URLConnection connection = myURL.openConnection();
 		    connection.connect();
-		    /*BufferedReader in = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
-			String inputLine;
-			StringBuilder stringBuilder = new StringBuilder();
+		    return connection;
+
+		}catch (MalformedURLException e) { 
+		    // new URL() failed
+		    // ...
+		} 
+		catch (IOException e) {   
+		    // openConnection() failed
+		    // ...
+		}
+		return null;
+		
+	}
+	public static InputStream getContent(String url) {
+		
+		try {
 			
-			while ((inputLine = in.readLine()) != null) 
-				stringBuilder.append(inputLine);
-			
-			String hostList = stringBuilder.toString();
-			in.close();*/
+		    //URL myURL = new URL(url);
+		    URLConnection connection = call(url);//myURL.openConnection();
+		    //connection.connect();
 			
 			return connection.getInputStream();
 
