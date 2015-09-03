@@ -34,7 +34,7 @@ public class ViewApi {
 	}
 
 	public void setDocumentListForHost(Host host, List<Document> files) {
-		// to be implemented
+		this.frame.setDocumentListForHost(host, files);
 	}
 
 	/**

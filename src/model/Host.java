@@ -18,4 +18,8 @@ public class Host {
 	public String toString() {
 		return this.name + " (" + this.externalIp + ":" + this.externalPort + ")";
 	}
+
+	public String getName() {
+		return this.name;
+	}
 }
