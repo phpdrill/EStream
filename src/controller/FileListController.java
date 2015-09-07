@@ -13,11 +13,9 @@ public class FileListController {
 	}
 
 	public void show(DocumentList list, Host host) {
-		
+
 		api.setDocumentListForHost(host, list);
-		
+
 	}
 
-	
-	
 }

@@ -14,7 +14,8 @@ import ch.judos.generic.network.udp.model.FileDescription;
  * @since 31.08.2015
  * @author Julian Schelker
  */
-public class ReceiverDeniesFiles implements FileTransmissionHandler, UdpFileTransferListener, UdpListener {
+public class ReceiverDeniesFiles implements FileTransmissionHandler, UdpFileTransferListener,
+	UdpListener {
 
 	public static int targetPort = 50001;
 

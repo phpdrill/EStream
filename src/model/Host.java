@@ -24,8 +24,8 @@ public class Host {
 	public String getName() {
 		return this.name;
 	}
-	
-	public InetSocketAddress getInetSocketAddress(){
+
+	public InetSocketAddress getInetSocketAddress() {
 		return new InetSocketAddress(externalIp, Integer.valueOf(externalPort));
 	}
 }

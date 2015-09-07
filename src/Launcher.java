@@ -12,7 +12,7 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 
 		/**** HARDCODED PROPERTIES ****/
 		new MainController();
-		
+
 	}
 
 	@Override
@@ -24,25 +24,26 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 	@Override
 	public void transmissionAcceptedAndStarted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void transmissionCompleted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void transmissionDeniedAndCanceled() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void transmissionProgress(float percentage, float avgSpeed, long transmitted, long total) {
+	public void transmissionProgress(float percentage, float avgSpeed, long transmitted,
+		long total) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -54,7 +55,7 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 	@Override
 	public void connectionReconnected(InetSocketAddress from) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -62,6 +63,5 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 		// TODO Auto-generated method stub
 		System.out.println("receive msg");
 	}
-	
-	
+
 }

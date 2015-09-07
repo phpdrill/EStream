@@ -17,7 +17,6 @@ import view.ViewApi;
 
 public class HostListController implements SelectionListener<Host> {
 
-	
 	private HostList hostList = null;
 	private ViewApi api;
 	private Udp4Forwarded udp;
@@ -56,11 +55,14 @@ public class HostListController implements SelectionListener<Host> {
 	@Override
 	public void selected(Host host) {
 
-		if(udp==null) return;
-		
+		if (udp == null)
+			return;
+
 		try {
-			udp.sendObjectConfirmTo(new RequestDocumentList(), true, host.getInetSocketAddress());
-		} catch (SerializerException | IOException e) {
+			udp.sendObjectConfirmTo(new RequestDocumentList(), true, host
+				.getInetSocketAddress());
+		}
+		catch (SerializerException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -68,9 +70,9 @@ public class HostListController implements SelectionListener<Host> {
 	}
 
 	public void setUdp(Udp4Forwarded udp) {
-		
+
 		this.udp = udp;
-		
+
 	}
 
 	public HostList getHostList() {

@@ -28,18 +28,17 @@ public class ReceiverAcceptsFiles implements FileTransmissionHandler, UdpFileTra
 	}
 	private Udp4Forwarded udpLib;
 	public ReceiverAcceptsFiles() throws SocketException {
-		
-		while(this.udpLib == null){
+
+		while (this.udpLib == null) {
 			this.udpLib = UdpLib.createForwarded();
 		}
-		
+
 		System.out.println("Port mapping created on port " + udpLib.getExternalPort());
 
 		udpLib.setFileHandler(this);
 
 		udpLib.addObjectListener(this);
 	}
-
 
 	@Override
 	public File requestFileTransmission(FileDescription fd) {

@@ -30,7 +30,8 @@ public class MainController implements UdpLibControllerCallback {
 				return;
 			try {
 				udp.dispose();
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 
@@ -44,7 +45,6 @@ public class MainController implements UdpLibControllerCallback {
 		});
 
 		hostListC = new HostListController(api);
-		
 
 	}
 
@@ -57,8 +57,8 @@ public class MainController implements UdpLibControllerCallback {
 		String name = System.getProperty("user.name");
 		int port = udp.getExternalPort();
 
-		URLConnector
-				.getContent("http://www.however.ch/estream/registerHost.php?" + "name=" + name + "&port=" + port);
+		URLConnector.getContent("http://www.however.ch/estream/registerHost.php?" + "name="
+			+ name + "&port=" + port);
 
 	}
 
@@ -87,7 +87,5 @@ public class MainController implements UdpLibControllerCallback {
 		createRegisterHostTimer();
 
 	}
-
-	
 
 }
