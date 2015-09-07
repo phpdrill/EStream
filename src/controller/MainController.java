@@ -43,6 +43,10 @@ public class MainController implements UdpLibControllerCallback{
 		
 		
 		hostListC = new HostListController(api);
+		api.addShutdownHook(() -> {
+			timer.cancel();
+		});
+		HostListController hostListC = new HostListController(api);
 		hostListC.show();
 		
 		
