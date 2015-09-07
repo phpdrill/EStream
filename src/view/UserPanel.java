@@ -1,11 +1,16 @@
 package view;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.List;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import model.Document;
+import view.cellRenderer.CustomListCellRenderer;
 
 /**
  * @since 03.09.2015
@@ -17,8 +22,16 @@ public class UserPanel extends JPanel {
 	private JList<Document> list;
 
 	public UserPanel() {
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = c.gridy = 0;
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = c.weighty = 1;
+
 		this.list = new JList<Document>();
-		this.add(this.list);
+		this.list.setBorder(new LineBorder(Color.gray));
+		this.list.setCellRenderer(new CustomListCellRenderer());
+		this.add(this.list, c);
 	}
 
 	public void setFileList(List<Document> files) {

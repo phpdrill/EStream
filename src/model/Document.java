@@ -7,12 +7,31 @@ import java.io.File;
  * @author Julian Schelker
  */
 public class Document {
+
+	String name;
+	String description;
+	long byteSize;
+
 	public Document(File file) {
 		name = file.getName();
 		description = "";
 		byteSize = file.getUsableSpace();
 	}
-	String name;
-	String description;
-	long byteSize;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public long getByteSize() {
+		return this.byteSize;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
