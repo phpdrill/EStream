@@ -37,6 +37,9 @@ public class MainController {
 		
 		createRegisterHostTimer();
 		
+		api.addShutdownHook(() -> {
+			timer.cancel();
+		});
 		HostListController hostListC = new HostListController(api);
 		hostListC.show();
 		
