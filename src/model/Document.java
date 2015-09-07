@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 public class Document implements Serializable {
 
+	private static final long serialVersionUID = -6147394769111959196L;
 	String name;
 	String description;
 	long byteSize;

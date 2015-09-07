@@ -17,6 +17,8 @@ import org.xml.sax.SAXException;
 
 public class HostList extends ArrayList<Host> {
 
+	private static final long serialVersionUID = -5497332501552846759L;
+
 	public static HostList getFromString(InputStream content)
 		throws ParserConfigurationException, SAXException, IOException {
 
