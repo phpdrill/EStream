@@ -13,6 +13,8 @@ public class DocumentList extends ArrayList<Document>{
 		DocumentList list = new DocumentList();
 		File folder = new File(path);
 		
+		if(folder == null) return null;
+		
 		for (final File file : folder.listFiles()) {
 	        if (file.isDirectory()) {
 	            //get(file); RECURSIVE 
