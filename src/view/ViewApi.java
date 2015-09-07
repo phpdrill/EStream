@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Document;
 import model.Host;
+import view.listeners.FileDownloadSelectionListener;
 
 /**
  * @since 03.09.2015
@@ -24,6 +25,11 @@ public class ViewApi {
 
 	public void setSelectionListener(SelectionListener<Host> selectionListener) {
 		this.frame.setSelectionListener(selectionListener);
+	}
+
+	public void
+		setFileDownloadSelectionListener(FileDownloadSelectionListener downloadListener) {
+		this.frame.setFileDownloadListener(downloadListener);
 	}
 
 	public void setDocumentListForHost(Host host, List<Document> files) {

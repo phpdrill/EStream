@@ -30,8 +30,12 @@ public class ViewDemoLauncher implements SelectionListener<Host> {
 
 	@Override
 	public void selected(Host object) {
-		Document d = new Document(new File("demoFile.txt"));
-		DynamicList<Document> files = new DynamicList<>(d);
+		DynamicList<Document> files = new DynamicList<>();
+
+		for (int i = 0; i < 5; i++) {
+			Document d = new Document(new File("demoFile.txt"));
+			files.add(d);
+		}
 
 		this.api.setDocumentListForHost(this.demoHost, files);
 	}

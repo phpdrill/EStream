@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 import model.Document;
 import model.Host;
 import view.cellRenderer.CustomListCellRenderer;
+import view.listeners.FileDownloadSelectionListener;
 
 /**
  * @since 03.09.2015
@@ -26,6 +27,7 @@ public class EStreamFrame extends JFrame {
 	JTabbedPane tabbedPane;
 	private UserListSelectionListener userListSelectionListener;
 	ArrayList<Object> tabs;
+	private SelectionDownloadMouseListener downloadListener;
 
 	public EStreamFrame(WindowListener windowListener) {
 		super("EStream");
@@ -45,6 +47,7 @@ public class EStreamFrame extends JFrame {
 		this.tabs = new ArrayList<Object>();
 		this.tabs.add("UserList");
 		this.userListSelectionListener = new UserListSelectionListener(this);
+		this.downloadListener = new SelectionDownloadMouseListener();
 	}
 
 	private void addSelfDisposeListener() {
@@ -72,7 +75,7 @@ public class EStreamFrame extends JFrame {
 	}
 
 	public void addTabForHost(Host host) {
-		JPanel panel = new UserPanel();
+		JPanel panel = new UserPanel(this.downloadListener.getMouseListenerForHost(host));
 		this.tabbedPane.addTab(host.getName(), panel);
 		this.tabs.add(host);
 		this.tabbedPane.setSelectedIndex(this.tabbedPane.getTabCount() - 1);
@@ -93,5 +96,9 @@ public class EStreamFrame extends JFrame {
 				return;
 			}
 		}
+	}
+
+	public void setFileDownloadListener(FileDownloadSelectionListener downloadListener) {
+		this.downloadListener.fileDownloadSelectionListener = downloadListener;
 	}
 }
