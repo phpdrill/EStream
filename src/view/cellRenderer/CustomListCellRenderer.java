@@ -2,13 +2,12 @@ package view.cellRenderer;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridBagLayout;
 
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
+import javax.swing.*;
 
 import view.design.Constants;
+import view.design.StandardGridBagLayoutConstraints;
 
 /**
  * @since 07.09.2015
@@ -20,9 +19,12 @@ public class CustomListCellRenderer implements ListCellRenderer<Object> {
 	public Component getListCellRendererComponent(JList<? extends Object> list, Object value,
 		int index, boolean isSelected, boolean cellHasFocus) {
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		StandardGridBagLayoutConstraints c = new StandardGridBagLayoutConstraints();
 		JLabel label = new JLabel(value.toString());
+		label.setHorizontalAlignment(SwingConstants.LEFT);
 		label.setFont(Constants.cellFont);
-		panel.add(label);
+		panel.add(label, c);
 		if (cellHasFocus) {
 			panel.setBackground(Color.lightGray);
 		}

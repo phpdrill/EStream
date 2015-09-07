@@ -8,5 +8,5 @@ import java.awt.Font;
  */
 public class Constants {
 
-	public static Font cellFont = new Font("Arial", 0, 24);
+	public static Font cellFont = new Font("Arial", 0, 18);
 }

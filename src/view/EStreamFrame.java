@@ -62,7 +62,7 @@ public class EStreamFrame extends JFrame {
 
 		this.userList = new JList<Host>();
 		this.userList.setCellRenderer(new CustomListCellRenderer());
-		this.userList.setPreferredSize(new Dimension(250, 500));
+		this.userList.setPreferredSize(new Dimension(300, 500));
 		this.userList.addMouseListener(this.userListSelectionListener);
 		this.tabbedPane.addTab("UserList", this.userList);
 	}
