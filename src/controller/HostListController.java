@@ -4,20 +4,20 @@ import java.io.InputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import model.Host;
-import model.HostList;
-import model.packets.RequestDocumentList;
-
 import org.xml.sax.SAXException;
 
 import ch.judos.generic.data.SerializerException;
 import ch.judos.generic.network.udp.Udp4Forwarded;
+import model.Host;
+import model.HostList;
+import model.packets.RequestDocumentList;
 import util.URLConnector;
 import view.SelectionListener;
 import view.ViewApi;
 
 public class HostListController implements SelectionListener<Host> {
 
+	
 	private HostList hostList = null;
 	private ViewApi api;
 	private Udp4Forwarded udp;
@@ -64,12 +64,6 @@ public class HostListController implements SelectionListener<Host> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// *** PFAD ALESSIO ***//
-		/*String path = host.getName().equals("Alessio") ? "D:\\Musik\\25.08.2015" : "D:\\Musik\\gut";
-
-		FileListController fileListC = new FileListController();
-		fileListC.show(path, host, api);*/
 
 	}
 
@@ -77,5 +71,9 @@ public class HostListController implements SelectionListener<Host> {
 		
 		this.udp = udp;
 		
+	}
+
+	public HostList getHostList() {
+		return hostList;
 	}
 }

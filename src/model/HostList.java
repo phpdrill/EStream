@@ -1,7 +1,9 @@
 package model;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class HostList extends ArrayList<Host> {
-
+	
 	public static HostList getFromString(InputStream content) throws ParserConfigurationException, SAXException, IOException {
 		
 		if(content == null) return null;
@@ -48,5 +50,17 @@ public class HostList extends ArrayList<Host> {
 		
 		return hostList;
 	}
+
+	private HashMap<InetSocketAddress, Host> hashMap;
 	
+	@Override
+	public boolean add(Host e) {
+		hashMap.put(e.getInetSocketAddress(), e);
+		return super.add(e);
+	}
+	
+	public Host get(InetSocketAddress address){
+		return hashMap.containsKey(address) ? 
+				hashMap.get(address) : null;
+	}
 }

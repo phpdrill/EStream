@@ -10,7 +10,6 @@ import ch.judos.generic.network.udp.Udp4Forwarded;
 import ch.judos.generic.network.udp.UdpConfig;
 import ch.judos.generic.network.udp.UdpLib;
 import ch.judos.generic.network.udp.interfaces.FileTransmissionHandler;
-import ch.judos.generic.network.udp.interfaces.Udp4I;
 import ch.judos.generic.network.udp.interfaces.UdpFileTransferListener;
 import ch.judos.generic.network.udp.interfaces.UdpListener;
 import ch.judos.generic.network.udp.model.FileDescription;

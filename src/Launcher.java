@@ -1,14 +1,8 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
 
 import ch.judos.generic.data.SerializerException;
 import ch.judos.generic.network.udp.ConnectionIssueListener;
-import ch.judos.generic.network.udp.UdpLib;
-import ch.judos.generic.network.udp.interfaces.Udp4I;
 import ch.judos.generic.network.udp.interfaces.UdpFileTransferListener;
 import ch.judos.generic.network.udp.interfaces.UdpListener;
 import controller.MainController;
@@ -17,7 +11,7 @@ public class Launcher implements UdpFileTransferListener, ConnectionIssueListene
 	public static void main(String[] args) throws SerializerException, IOException {
 
 		/**** HARDCODED PROPERTIES ****/
-		MainController controller = new MainController();
+		new MainController();
 		
 	}
 

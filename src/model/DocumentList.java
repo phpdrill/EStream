@@ -1,17 +1,17 @@
 package model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-public class DocumentList extends ArrayList<Document>{
+public class DocumentList extends ArrayList<Document> implements Serializable{
+ 
+	private static final long serialVersionUID = -7249527028785845889L;
 
 	public static DocumentList get(String path) {
 		
 		DocumentList list = new DocumentList();
 		File folder = new File(path);
-		
-		if(folder == null) return new DocumentList();
 		
 		if(folder.listFiles()==null){
 			return new DocumentList();

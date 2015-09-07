@@ -1,12 +1,13 @@
 package model;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * @since 03.09.2015
  * @author Julian Schelker
  */
-public class Document {
+public class Document implements Serializable {
 
 	String name;
 	String description;

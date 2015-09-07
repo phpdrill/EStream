@@ -1,24 +1,10 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.SocketException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import ch.judos.generic.network.udp.Udp4Forwarded;
-import ch.judos.generic.network.udp.UdpLib;
-import ch.judos.generic.network.udp.interfaces.Udp4I;
-import ch.judos.generic.network.udp.interfaces.UdpListener;
-import sun.misc.IOUtils;
 import util.URLConnector;
 import view.ViewApi;
 
@@ -71,7 +57,7 @@ public class MainController implements UdpLibControllerCallback {
 		String name = System.getProperty("user.name");
 		int port = udp.getExternalPort();
 
-		InputStream inputStream = URLConnector
+		URLConnector
 				.getContent("http://www.however.ch/estream/registerHost.php?" + "name=" + name + "&port=" + port);
 
 	}
@@ -94,7 +80,8 @@ public class MainController implements UdpLibControllerCallback {
 	public void udpForwardCreated(Udp4Forwarded udp) {
 
 		this.udp = udp;
-		this.udp.addObjectListener(new ReceiveObjectListener());
+		FileListController fileListC = new FileListController(api);
+		this.udp.addObjectListener(new ReceiveObjectListener(udp, hostListC, fileListC));
 		hostListC.setUdp(udp);
 		hostListC.show();
 		createRegisterHostTimer();

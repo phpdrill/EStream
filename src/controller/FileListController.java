@@ -1,19 +1,20 @@
 package controller;
 
-import java.util.List;
-
-import model.Document;
 import model.DocumentList;
 import model.Host;
 import view.ViewApi;
 
 public class FileListController {
 
-	public void show(String path, Host host, ViewApi api) {
+	private ViewApi api;
+
+	public FileListController(ViewApi api) {
+		this.api = api;
+	}
+
+	public void show(DocumentList list, Host host) {
 		
-		List<Document> fileList = DocumentList.get(path);
-		
-		api.setDocumentListForHost(host, fileList);
+		api.setDocumentListForHost(host, list);
 		
 	}
 
