@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import model.Document;
+import model.DocumentList;
 import model.Host;
 import view.ViewApi;
 

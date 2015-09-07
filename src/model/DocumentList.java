@@ -1,10 +1,8 @@
-package controller;
+package model;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Document;
 
 public class DocumentList extends ArrayList<Document>{
 

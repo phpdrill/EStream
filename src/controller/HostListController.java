@@ -6,9 +6,12 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import model.Host;
 import model.HostList;
+import model.packets.RequestDocumentList;
 
 import org.xml.sax.SAXException;
 
+import ch.judos.generic.data.SerializerException;
+import ch.judos.generic.network.udp.Udp4Forwarded;
 import util.URLConnector;
 import view.SelectionListener;
 import view.ViewApi;
@@ -17,6 +20,7 @@ public class HostListController implements SelectionListener<Host> {
 
 	private HostList hostList = null;
 	private ViewApi api;
+	private Udp4Forwarded udp;
 	public HostListController(ViewApi api) {
 		this.api = api;
 	}
@@ -52,14 +56,26 @@ public class HostListController implements SelectionListener<Host> {
 	@Override
 	public void selected(Host host) {
 
+		if(udp==null) return;
+		
+		try {
+			udp.sendObjectConfirmTo(new RequestDocumentList(), true, host.getInetSocketAddress());
+		} catch (SerializerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// *** PFAD ALESSIO ***//
-		String path = host.getName().equals("Alessio") ? "D:\\Musik\\25.08.2015" : "";
-		// *** PFAD JULIAN ***//
-		if (host.getName().equals("j"))
-			path = "D:\\Musik\\gut";
+		/*String path = host.getName().equals("Alessio") ? "D:\\Musik\\25.08.2015" : "D:\\Musik\\gut";
 
 		FileListController fileListC = new FileListController();
-		fileListC.show(path, host, api);
+		fileListC.show(path, host, api);*/
 
+	}
+
+	public void setUdp(Udp4Forwarded udp) {
+		
+		this.udp = udp;
+		
 	}
 }
