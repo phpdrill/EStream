@@ -12,8 +12,8 @@ import model.Host;
 import model.HostList;
 import model.packets.RequestDocumentList;
 import util.URLConnector;
-import view.SelectionListener;
-import view.ViewApi;
+import view.api.SelectionListener;
+import view.api.ViewApi;
 
 public class HostListController implements SelectionListener<Host> {
 

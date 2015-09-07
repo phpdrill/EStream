@@ -1,4 +1,4 @@
-package view;
+package view.listeners;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,7 +8,7 @@ import javax.swing.JList;
 
 import model.Document;
 import model.Host;
-import view.listeners.FileDownloadSelectionListener;
+import view.api.FileDownloadSelectionListener;
 
 /**
  * @since 07.09.2015

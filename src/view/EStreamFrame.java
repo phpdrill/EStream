@@ -14,8 +14,11 @@ import javax.swing.JTabbedPane;
 
 import model.Document;
 import model.Host;
+import view.api.FileDownloadSelectionListener;
+import view.api.SelectionListener;
 import view.cellRenderer.CustomListCellRenderer;
-import view.listeners.FileDownloadSelectionListener;
+import view.listeners.SelectionDownloadMouseListener;
+import view.listeners.UserListSelectionListener;
 
 /**
  * @since 03.09.2015
@@ -23,7 +26,7 @@ import view.listeners.FileDownloadSelectionListener;
  */
 public class EStreamFrame extends JFrame {
 	private static final long serialVersionUID = 5546962031230294735L;
-	public JList<Host> userList;
+	JList<Host> userList;
 	JTabbedPane tabbedPane;
 	private UserListSelectionListener userListSelectionListener;
 	ArrayList<Object> tabs;
@@ -46,7 +49,6 @@ public class EStreamFrame extends JFrame {
 	private void initializeObjects() {
 		this.tabs = new ArrayList<Object>();
 		this.tabs.add("UserList");
-		this.userListSelectionListener = new UserListSelectionListener(this);
 		this.downloadListener = new SelectionDownloadMouseListener();
 	}
 
@@ -64,6 +66,8 @@ public class EStreamFrame extends JFrame {
 		this.add(this.tabbedPane);
 
 		this.userList = new JList<Host>();
+		this.userListSelectionListener = new UserListSelectionListener(this.userList, this);
+
 		this.userList.setCellRenderer(new CustomListCellRenderer());
 		this.userList.setPreferredSize(new Dimension(300, 500));
 		this.userList.addMouseListener(this.userListSelectionListener);
@@ -100,5 +104,23 @@ public class EStreamFrame extends JFrame {
 
 	public void setFileDownloadListener(FileDownloadSelectionListener downloadListener) {
 		this.downloadListener.fileDownloadSelectionListener = downloadListener;
+	}
+
+	public void openOrShowTabForUser(Host selected) {
+		if (selected == null)
+			return;
+		for (int i = 0; i < this.tabbedPane.getTabCount(); i++) {
+			Object o = this.tabs.get(i);
+			if ((o instanceof Host) && o == selected) {
+				this.tabbedPane.setSelectedIndex(i);
+				return;
+			}
+		}
+
+		this.addTabForHost(selected);
+	}
+
+	public void setListData(Host[] array) {
+		this.userList.setListData(array);
 	}
 }

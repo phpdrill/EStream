@@ -2,7 +2,7 @@ package controller;
 
 import model.DocumentList;
 import model.Host;
-import view.ViewApi;
+import view.api.ViewApi;
 
 public class FileListController {
 

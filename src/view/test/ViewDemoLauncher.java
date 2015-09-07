@@ -4,8 +4,8 @@ import java.io.File;
 
 import model.Document;
 import model.Host;
-import view.SelectionListener;
-import view.ViewApi;
+import view.api.SelectionListener;
+import view.api.ViewApi;
 import ch.judos.generic.data.DynamicList;
 
 /**

@@ -1,4 +1,4 @@
-package view;
+package view.api;
 
 /**
  * @since 03.09.2015

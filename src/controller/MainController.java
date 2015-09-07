@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import ch.judos.generic.network.udp.Udp4Forwarded;
 import util.URLConnector;
-import view.ViewApi;
+import view.api.ViewApi;
 
 public class MainController implements UdpLibControllerCallback {
 

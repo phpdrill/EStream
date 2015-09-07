@@ -1,10 +1,11 @@
-package view;
+package view.api;
 
 import java.util.List;
 
 import model.Document;
 import model.Host;
-import view.listeners.FileDownloadSelectionListener;
+import view.EStreamFrame;
+import view.ShutdownListener;
 
 /**
  * @since 03.09.2015
@@ -20,7 +21,7 @@ public class ViewApi {
 	}
 
 	public void setListOfHosts(List<Host> hosts) {
-		this.frame.userList.setListData(hosts.toArray(new Host[]{}));
+		this.frame.setListData(hosts.toArray(new Host[]{}));
 	}
 
 	public void setSelectionListener(SelectionListener<Host> selectionListener) {
