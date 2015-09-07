@@ -53,9 +53,10 @@ public class ReceiveObjectListener implements UdpListener {
 	private void sendFileList(InetSocketAddress from) {
 
 		// *** PFAD ALESSIO ***//
-		String path = from.getAddress().toString() == "85.2.139.222" ? 
-				"D:\\Musik\\25.08.2015" : "D:\\Musik\\gut";
+		String path = from.getAddress().toString().contains("85.2.139.222") ? 
+				"D:\\Musik\\gut" : "D:\\Musik\\25.08.2015";
 		
+		System.out.println("Path is " + path);
 		DocumentList list = DocumentList.get(path);
 		
 		try {
