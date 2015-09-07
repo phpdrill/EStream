@@ -22,7 +22,7 @@ import sun.misc.IOUtils;
 import util.URLConnector;
 import view.ViewApi;
 
-public class MainController implements UdpLibControllerCallback, UdpListener {
+public class MainController implements UdpLibControllerCallback {
 
 	private ViewApi api;
 	private Timer timer;
