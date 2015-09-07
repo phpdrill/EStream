@@ -84,8 +84,9 @@ public class MainController implements UdpLibControllerCallback{
 	}
 
 	@Override
-	public void udpForwardCreated() {
+	public void udpForwardCreated(Udp4Forwarded udp) {
 		
+		this.udp = udp;
 		createRegisterHostTimer();
 	
 	}

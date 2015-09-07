@@ -18,10 +18,11 @@ public class UdpLibController implements Runnable {
 		
 		try {
 			udp = UdpLib.createForwarded();
-			callback.udpForwardCreated();
+			callback.udpForwardCreated(udp);
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
 		
 	}

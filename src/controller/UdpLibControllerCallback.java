@@ -1,5 +1,9 @@
 package controller;
 
+import ch.judos.generic.network.udp.Udp4Forwarded;
+
 public interface UdpLibControllerCallback {
-	public void udpForwardCreated();
+	
+
+	void udpForwardCreated(Udp4Forwarded udp);
 }
