@@ -26,14 +26,14 @@ public class ReceiveObjectListener implements UdpListener {
 
 	@Override
 	public void receiveMsg(Object source, InetSocketAddress from, Object data) {
-		System.out.println("Received request ");
+		
 		
 		if(data instanceof RequestDocumentList){
-			
+			System.out.println("Received document list ");			
 			sendFileList(from);
 			
 		}else if(data instanceof DocumentList){
-			
+			System.out.println("Received data list ");
 			showFileList((DocumentList)data, from);
 			
 		}
