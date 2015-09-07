@@ -23,8 +23,9 @@ public class HostListController implements SelectionListener<Host> {
 
 	public void show() {
 
-		if (hostList == null)
+		if (hostList == null){
 			get();
+		}
 
 		api.setSelectionListener(this);
 		api.setListOfHosts(hostList);
@@ -34,7 +35,8 @@ public class HostListController implements SelectionListener<Host> {
 	private void get() {
 
 		try {
-
+			
+			
 			InputStream content = URLConnector
 				.getContent("http://www.however.ch/estream/getHostList.php");
 			hostList = HostList.getFromString(content);

@@ -28,12 +28,18 @@ public class MainController {
 	public MainController() throws SocketException{
 		
 		api = new ViewApi();
+		
+		
 		udp = UdpLib.createForwarded();
+		api.addShutdownHook(()->{
+			udp.dispose();
+			});
 		
 		createRegisterHostTimer();
 		
 		HostListController hostListC = new HostListController(api);
 		hostListC.show();
+		
 		
 		
 	}
