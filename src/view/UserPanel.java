@@ -11,6 +11,7 @@ import javax.swing.border.LineBorder;
 
 import model.Document;
 import view.cellRenderer.CustomListCellRenderer;
+import view.design.StandardGridBagLayoutConstraints;
 
 /**
  * @since 03.09.2015
@@ -23,10 +24,7 @@ public class UserPanel extends JPanel {
 
 	public UserPanel() {
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = c.gridy = 0;
-		c.fill = GridBagConstraints.BOTH;
-		c.weightx = c.weighty = 1;
+		GridBagConstraints c = new StandardGridBagLayoutConstraints();
 
 		this.list = new JList<Document>();
 		this.list.setBorder(new LineBorder(Color.gray));
