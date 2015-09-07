@@ -1,5 +1,7 @@
 package model;
 
+import java.net.InetSocketAddress;
+
 public class Host {
 
 	private String name = "";
@@ -21,5 +23,9 @@ public class Host {
 
 	public String getName() {
 		return this.name;
+	}
+	
+	public InetSocketAddress getInetSocketAddress(){
+		return new InetSocketAddress(externalIp, Integer.valueOf(externalPort));
 	}
 }
