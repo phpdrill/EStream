@@ -13,7 +13,11 @@ public class DocumentList extends ArrayList<Document>{
 		DocumentList list = new DocumentList();
 		File folder = new File(path);
 		
-		if(folder == null) return null;
+		if(folder == null) return new DocumentList();
+		
+		if(folder.listFiles()==null){
+			return new DocumentList();
+		}
 		
 		for (final File file : folder.listFiles()) {
 	        if (file.isDirectory()) {

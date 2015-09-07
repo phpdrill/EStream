@@ -19,29 +19,38 @@ import sun.misc.IOUtils;
 import util.URLConnector;
 import view.ViewApi;
 
-public class MainController {
+public class MainController implements UdpLibControllerCallback{
 	
 	private ViewApi api;
 	private Timer timer;
 	private Udp4Forwarded udp;
+	private UdpLibController udpLibController;
+	private HostListController hostListC;
 	
 	public MainController() throws SocketException{
 		
 		api = new ViewApi();
 		
+		udpLibController = new UdpLibController(this);
+		Thread thread = new Thread(udpLibController);
+		thread.start();
 		
-		udp = UdpLib.createForwarded();
 		api.addShutdownHook(()->{
+			Udp4Forwarded udp = getUdp();
+			if(udp==null) return;
 			udp.dispose();
 			});
 		
-		createRegisterHostTimer();
 		
-		HostListController hostListC = new HostListController(api);
+		hostListC = new HostListController(api);
 		hostListC.show();
 		
 		
 		
+	}
+
+	private Udp4Forwarded getUdp() {
+		return udpLibController.getUdp();
 	}
 
 	private void registerHost() {
@@ -54,6 +63,8 @@ public class MainController {
 				URLConnector.getContent("http://www.however.ch/estream/registerHost.php?"
 				+ "name=" + name
 				+ "&port=" + port);
+		
+		
 
 		
 	}
@@ -65,10 +76,18 @@ public class MainController {
 			@Override
 			public void run(){
 				registerHost();
+				hostListC.show();
 			}
 		};
 		timer.schedule(task, 0l, 1000*10);
 		
+	}
+
+	@Override
+	public void udpForwardCreated() {
+		
+		createRegisterHostTimer();
+	
 	}
 
 	
