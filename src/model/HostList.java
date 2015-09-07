@@ -51,7 +51,7 @@ public class HostList extends ArrayList<Host> {
 		return hostList;
 	}
 
-	private HashMap<InetSocketAddress, Host> hashMap;
+	private HashMap<InetSocketAddress, Host> hashMap = new HashMap<InetSocketAddress, Host>();
 	
 	@Override
 	public boolean add(Host e) {
