@@ -46,6 +46,8 @@ public class ReceiveObjectListener implements UdpListener {
 		HostList hostList = hostListC.getHostList();
 		
 		
+		// FIXME: the host is probably null, that's why the view can't display
+		// the list.
 		fileListC.show(list, hostList.get(from));
 		
 	}
