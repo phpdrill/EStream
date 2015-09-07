@@ -23,7 +23,7 @@ public class HostListController implements SelectionListener<Host> {
 
 	public void show() {
 
-		if (hostList == null){
+		if (hostList == null) {
 			get();
 		}
 
@@ -35,8 +35,7 @@ public class HostListController implements SelectionListener<Host> {
 	private void get() {
 
 		try {
-			
-			
+
 			InputStream content = URLConnector
 				.getContent("http://www.however.ch/estream/getHostList.php");
 			hostList = HostList.getFromString(content);
@@ -59,7 +58,7 @@ public class HostListController implements SelectionListener<Host> {
 		// *** PFAD ALESSIO ***//
 		String path = host.getName().equals("Alessio") ? "D:\\Musik\\25.08.2015" : "";
 		// *** PFAD JULIAN ***//
-		if (host.getName().equals("Julian"))
+		if (host.getName().equals("j"))
 			path = "D:\\Musik\\gut";
 
 		FileListController fileListC = new FileListController();
