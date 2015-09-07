@@ -14,6 +14,7 @@ import javax.swing.JTabbedPane;
 
 import model.Document;
 import model.Host;
+import view.cellRenderer.CustomListCellRenderer;
 
 /**
  * @since 03.09.2015
@@ -60,6 +61,7 @@ public class EStreamFrame extends JFrame {
 		this.add(this.tabbedPane);
 
 		this.userList = new JList<Host>();
+		this.userList.setCellRenderer(new CustomListCellRenderer());
 		this.userList.setPreferredSize(new Dimension(250, 500));
 		this.userList.addMouseListener(this.userListSelectionListener);
 		this.tabbedPane.addTab("UserList", this.userList);
