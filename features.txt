@@ -1,0 +1,38 @@
+Legende:
+Priorität wird gekennzeichnet mit folgenden Zeichen in absteigender Reihenfolge:
+! (unbedingt) + (wichtig) ~ (nützlich) - (unwichtig) ? (fraglich)
+
+Features der nächsten Version:
+------------------------------------------
+0.1:
+
+! kontaktliste (name,external ip,port) -> hardcoded (Alessio)
+    ---> klasse, hardgecodete liste in fenster anzeigen
+! dateiliste von hardgecodetem pfad in fenster anzeigen
+! dateien sind anklickbar und anforderbar
+! einfache funktion datei herunterladen von Kontakt
+
+0.2:
+
+
+Ungeordnete features:
+
+! keine hardgecodete Kontakt liste
+  + Name wird beim ersten mal nachgefragt (Popup request dialog)
+  + Name kann via Menü geändert werden
+! keine hardgecodeter zugänglicher Ordner
+  + Hinweis wird angezeigt, damit der User einen Ordner definiert.
+  + Via. Knopf kann ein anderer Ordner ausgewählt werden
+! geteilte Dateien werden in einer einzigen Liste (JTree) angezeigt
+  + Baumansicht (User können geöffnet werden)
+  
++ Datei sharing lokal im intranet
+  + lokale User werden auch wenn sie nicht in der Kontaktliste sind augeführt
+  
+~ Suchfunktion in der Dateiliste
+  - Filter um Suche auf einen User zu begrenzen
+
+Niedrigste Priorität:
+- Kontaktliste wird lokal zwischengespeichert, bei Neustart des Programmes wird via direkt Verbindung sofort geprüft wer online ist
+- Probleme bei der Verbindung (lan ausgesteckt werden angezeigt), die Verbindung wird weiterhin geprüft und wiederhergestellt sobald möglich
+- Dateiübertragungen werden nicht abgebrochen (bei crash o.ä), können später fortgesetzt werden 

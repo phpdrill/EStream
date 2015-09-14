@@ -1,8 +1,0 @@
-- kontaktliste (name,external ip,port) -> hardcoded (Alessio)
-    ---> klasse, hardgecodete liste in fenster anzeigen
-    
-- dateiliste von hardgecodetem pfad in fenster anzeigen
-
-- dateien sind anklickbar und anforderbar
-
-- einfache funktion datei sende an kontakt

@@ -41,7 +41,7 @@ public class RemovePortMappings {
 		PortMappingEntry portMapping = new PortMappingEntry();
 		int pmCount = 0;
 		do {
-			if (activeGW.getGenericPortMappingEntry(pmCount, portMapping)) {
+			if (activeGW.getGenericPortMappingEntry(0, portMapping)) {
 				addLogLine("Portmapping #" + pmCount + " successfully retrieved ("
 					+ portMapping.getPortMappingDescription() + ":"
 					+ portMapping.getExternalPort() + ")");
