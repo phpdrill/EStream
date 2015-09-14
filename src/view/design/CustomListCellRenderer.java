@@ -1,13 +1,10 @@
-package view.cellRenderer;
+package view.design;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
-
-import view.design.Constants;
-import view.design.StandardGridBagLayoutConstraints;
 
 /**
  * @since 07.09.2015

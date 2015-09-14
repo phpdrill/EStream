@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import model.Document;
-import view.cellRenderer.CustomListCellRenderer;
+import view.design.CustomListCellRenderer;
 import view.design.StandardGridBagLayoutConstraints;
 
 /**

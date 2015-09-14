@@ -1,24 +1,28 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import model.Document;
 import model.Host;
 import view.api.FileDownloadSelectionListener;
 import view.api.SelectionListener;
-import view.cellRenderer.CustomListCellRenderer;
-import view.listeners.SelectionDownloadMouseListener;
-import view.listeners.UserListSelectionListener;
+import view.data.DocumentTreeNode;
+import view.data.UserTreeNode;
+import view.design.CustomTreeCellRenderer;
+import view.listeners.TreeListener;
+import view.listeners.TreeMouseListener;
+import view.utils.TreeUtils;
 
 /**
  * @since 03.09.2015
@@ -26,11 +30,13 @@ import view.listeners.UserListSelectionListener;
  */
 public class EStreamFrame extends JFrame {
 	private static final long serialVersionUID = 5546962031230294735L;
-	JList<Host> userList;
+	JTree documentTree;
 	JTabbedPane tabbedPane;
-	private UserListSelectionListener userListSelectionListener;
-	ArrayList<Object> tabs;
-	private SelectionDownloadMouseListener downloadListener;
+	private DefaultMutableTreeNode documentRootNode;
+	private DefaultTreeModel documentTreeModel;
+	private HashMap<Host, DefaultMutableTreeNode> treeNodeHashMap;
+	private SelectionListener<Host> selectionListener;
+	private FileDownloadSelectionListener fileDownloadListener;
 
 	public EStreamFrame(WindowListener windowListener) {
 		super("EStream");
@@ -38,7 +44,7 @@ public class EStreamFrame extends JFrame {
 		initializeObjects();
 		setContent();
 
-		addSelfDisposeListener();
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.addWindowListener(windowListener);
 
 		this.pack();
@@ -47,80 +53,70 @@ public class EStreamFrame extends JFrame {
 	}
 
 	private void initializeObjects() {
-		this.tabs = new ArrayList<Object>();
-		this.tabs.add("UserList");
-		this.downloadListener = new SelectionDownloadMouseListener();
-	}
-
-	private void addSelfDisposeListener() {
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				EStreamFrame.this.dispose();
-			}
-		});
+		this.treeNodeHashMap = new HashMap<Host, DefaultMutableTreeNode>();
 	}
 
 	private void setContent() {
 		this.tabbedPane = new JTabbedPane();
 		this.add(this.tabbedPane);
 
-		this.userList = new JList<Host>();
-		this.userListSelectionListener = new UserListSelectionListener(this.userList, this);
+		this.documentRootNode = new DefaultMutableTreeNode("Root");
+		this.documentTreeModel = new DefaultTreeModel(this.documentRootNode);
+		this.documentTree = new JTree(this.documentTreeModel);
+		this.documentTree.setRootVisible(false);
+		this.documentTree.setShowsRootHandles(true);
+		this.documentTree.addTreeExpansionListener(new TreeListener((Host h) -> {
+			if (this.selectionListener != null)
+				this.selectionListener.selected(h);
+			else
+				System.err.println("No selectionListener defined for view");
+		}));
+		this.documentTree.addMouseListener(new TreeMouseListener((Host h, Document d) -> {
+			if (this.fileDownloadListener != null)
+				this.fileDownloadListener.fileDownloadInitiated(h, d);
+			else
+				System.err.println("No fileDownloadListener defined for view!");
+		}));
+		this.documentTree.setCellRenderer(new CustomTreeCellRenderer());
+		// this.documentTree.getSelectionPath()
+		JScrollPane scroll = new JScrollPane(this.documentTree);
+		scroll.setPreferredSize(new Dimension(300, 500));
 
-		this.userList.setCellRenderer(new CustomListCellRenderer());
-		this.userList.setPreferredSize(new Dimension(300, 500));
-		this.userList.addMouseListener(this.userListSelectionListener);
-		this.tabbedPane.addTab("UserList", this.userList);
+		this.tabbedPane.addTab("Document list", scroll);
 	}
 
 	public void setSelectionListener(SelectionListener<Host> selectionListener) {
-		this.userListSelectionListener.selectionListener = selectionListener;
+		this.selectionListener = selectionListener;
 	}
-
-	public void addTabForHost(Host host) {
-		JPanel panel = new UserPanel(this.downloadListener.getMouseListenerForHost(host));
-		this.tabbedPane.addTab(host.getName(), panel);
-		this.tabs.add(host);
-		this.tabbedPane.setSelectedIndex(this.tabbedPane.getTabCount() - 1);
-	}
-
 	public void setDocumentListForHost(Host host, List<Document> files) {
-		for (int i = 0; i < this.tabbedPane.getTabCount(); i++) {
-			Object o = this.tabs.get(i);
-			if ((o instanceof Host) && o == host) {
-				Object tab = this.tabbedPane.getComponentAt(i);
-				if (tab instanceof UserPanel) {
-					((UserPanel) tab).setFileList(files);
-				}
-				else {
-					System.out.println("Warning no UseerPanel found for index: " + i);
-				}
-
-				return;
-			}
+		DefaultMutableTreeNode node = this.treeNodeHashMap.get(host);
+		if (node == null) {
+			System.err.println("Can't open TreeNode for Host " + host
+				+ " which doesn't exist in JTree.");
+			return;
 		}
+		this.documentTreeModel.insertNodeInto(new DefaultMutableTreeNode("..."), node, 0);
+		TreeUtils.removeAllChildren(this.documentTreeModel, node, Document.class);
+		for (Document h : files) {
+			DefaultMutableTreeNode hn = new DocumentTreeNode(h);
+			this.documentTreeModel.insertNodeInto(hn, node, 0);
+		}
+		TreeUtils.removeAllChildren(this.documentTreeModel, node, String.class);
 	}
 
 	public void setFileDownloadListener(FileDownloadSelectionListener downloadListener) {
-		this.downloadListener.fileDownloadSelectionListener = downloadListener;
-	}
-
-	public void openOrShowTabForUser(Host selected) {
-		if (selected == null)
-			return;
-		for (int i = 0; i < this.tabbedPane.getTabCount(); i++) {
-			Object o = this.tabs.get(i);
-			if ((o instanceof Host) && o == selected) {
-				this.tabbedPane.setSelectedIndex(i);
-				return;
-			}
-		}
-
-		this.addTabForHost(selected);
+		this.fileDownloadListener = downloadListener;
 	}
 
 	public void setListData(Host[] array) {
-		this.userList.setListData(array);
+		TreeUtils.removeAllChildren(documentTreeModel, documentRootNode);
+		this.treeNodeHashMap.clear();
+		for (Host h : array) {
+			DefaultMutableTreeNode hn = new UserTreeNode(h);
+			this.treeNodeHashMap.put(h, hn);
+			hn.add(new DefaultMutableTreeNode("..."));
+			this.documentTreeModel.insertNodeInto(hn, this.documentRootNode, 0);
+		}
+		this.documentTree.expandPath(new TreePath(this.documentRootNode));
 	}
 }
