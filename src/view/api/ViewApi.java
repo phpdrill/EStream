@@ -6,6 +6,7 @@ import model.Document;
 import model.Host;
 import view.EStreamFrame;
 import view.ShutdownListener;
+import view.design.Constants;
 
 /**
  * @since 03.09.2015
@@ -16,6 +17,7 @@ public class ViewApi {
 	private EStreamFrame frame;
 
 	public ViewApi() {
+		Constants.load();
 		this.shutdownListener = new ShutdownListener();
 		this.frame = new EStreamFrame(this.shutdownListener);
 	}

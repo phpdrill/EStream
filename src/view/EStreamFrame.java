@@ -19,7 +19,8 @@ import view.api.FileDownloadSelectionListener;
 import view.api.SelectionListener;
 import view.data.DocumentTreeNode;
 import view.data.UserTreeNode;
-import view.design.CustomTreeCellRenderer;
+import view.design.CompoundTreeNodeRenderer;
+import view.listeners.TreeCompoundListener;
 import view.listeners.TreeListener;
 import view.listeners.TreeMouseListener;
 import view.utils.TreeUtils;
@@ -77,7 +78,8 @@ public class EStreamFrame extends JFrame {
 			else
 				System.err.println("No fileDownloadListener defined for view!");
 		}));
-		this.documentTree.setCellRenderer(new CustomTreeCellRenderer());
+		this.documentTree.addMouseListener(new TreeCompoundListener());
+		this.documentTree.setCellRenderer(new CompoundTreeNodeRenderer());
 		// this.documentTree.getSelectionPath()
 		JScrollPane scroll = new JScrollPane(this.documentTree);
 		scroll.setPreferredSize(new Dimension(300, 500));
